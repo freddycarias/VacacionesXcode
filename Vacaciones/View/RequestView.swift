@@ -100,5 +100,4 @@ struct RequestView_Previews: PreviewProvider {
     }
 }
 
-//Buenas tardes
 
