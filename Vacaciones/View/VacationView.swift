@@ -17,7 +17,7 @@ struct VacationView: View {
                         Text("Inicio")
                     }
                 
-                // hacer un if si el usuario es diferente a gerente
+                // hacer un if si el usuario es diferente a Gerente
                 NewRequestView()
                     .tabItem {
                         Image(systemName: "note.text.badge.plus")
