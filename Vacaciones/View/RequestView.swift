@@ -99,5 +99,3 @@ struct RequestView_Previews: PreviewProvider {
         RequestView(estado: "publicada", nombre: "Juan", tipoSolicitud: "vacaiones", fechaSolicitud: "25/03/2024", hora: "4", idSolicitud: "1", horasDisponibles: "120")
     }
 }
-
-
