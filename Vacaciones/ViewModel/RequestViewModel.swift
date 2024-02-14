@@ -122,6 +122,41 @@ final class RequestViewModel: ObservableObject {
         }
     }
     
+    func getRequestId(idUsuario: String) {
+        
+        guard let url = URL(string: "https://servicios.tvguatesa.com/api/api/getSolicitudesByUsuario") else {
+            print("Error: URL inválida")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let requestData: [String: Any] = [
+            "id_usuario": idUsuario
+        ]
+
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: requestData)
+            request.httpBody = jsonData
+
+            URLSession.shared.dataTask(with: request) { data, _, error in
+                if let error = error {
+                    print("Error al realizar la solicitud: \(error.localizedDescription)")
+                } else if let data = data {
+                    // Operaciones que actualizan la interfaz de usuario
+                    DispatchQueue.main.async {
+                        print("Respuesta del servidor: \(String(data: data, encoding: .utf8) ?? "")")
+                    }
+                }
+            }.resume()
+        } catch {
+            print("Error al convertir datos a JSON: \(error.localizedDescription)")
+        }
+    }
+
+    
     func updateState(idEstado: String, idSolicitud: String) {
         
         guard let url = URL(string: "https://servicios.tvguatesa.com/api/api/updateEstadoSolicitud") else {

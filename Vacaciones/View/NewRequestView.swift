@@ -147,7 +147,7 @@ struct NewRequestView: View {
                                      endDate: endDate,
                                      hours: hours) { success in
             if success {
-                requestViewModel.updateAvailableHours(idUsuario: "1", horasDisponibles: "110")
+                requestViewModel.updateAvailableHours(idUsuario: "1", horasDisponibles: "100")
                 // El envío de datos fue exitoso, ahora puedes navegar a otra vista
                 navigateToHome = true
             } else {

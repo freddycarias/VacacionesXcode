@@ -48,27 +48,39 @@ struct RequestView: View {
                 }
             }
             .pickerStyle(.segmented)
-            .frame(width: 300)
+            .frame(width: 200)
 
             if selectedCategory == .request {
                Text(tipoSolicitud)
                     .font(.largeTitle)
-                    .padding(.vertical, 10)
+                    .padding(.vertical, 75)
+                  
             } else if selectedCategory == .planning {
-                Text("Datos específicos para Planeacion")
-                    .font(.largeTitle)
-                    .padding(.vertical, 10)
+                List {
+                    ForEach(requestViewModel.requestModels, id: \.self){rq in
+                        Card(nombre: rq.nombre ?? "", fechaSolicitud: rq.fechaSolicitud ?? "", hora: rq.horas ?? "", estado: rq.estado ?? "")
+                    }
+                }
+                .frame(height: 300)
+                .task {
+                    requestViewModel.getRequestId(idUsuario: "1")
+                }
             }
 
             Text("Fecha: \(fechaSolicitud)")
                 .font(.largeTitle)
             Text("Horas: \(hora)hrs")
                 .font(.largeTitle)
+                
 
-            Spacer()
+            if estado != "publicada" {
+                Spacer()
+            }
+            
 
             //if donde se valide que en el login el usuario sea gerente o colavorador
             if estado == "publicada" {
+                
                 Button(action: {
                     requestViewModel.updateState(idEstado: "2", idSolicitud: idSolicitud)
                 }) {
