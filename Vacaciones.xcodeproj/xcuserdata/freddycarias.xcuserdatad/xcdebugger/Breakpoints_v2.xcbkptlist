@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "6EAE5EFC-CA11-42DA-8BD1-D3F21D3C70C1"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1CF81EAE-54C8-46EE-AD5D-AB1850AC0BBE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vacaciones/ViewModel/RequestViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "postLogin(correo:pass:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1CF81EAE-54C8-46EE-AD5D-AB1850AC0BBE - 5dc48a9af6dbb82b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vacaciones.RequestViewModel.postLogin(correo: Swift.String, pass: Swift.String) -&gt; ()"
+                  moduleName = "Vacaciones"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/freddycarias/Documents/VacacionesXcode/Vacaciones/ViewModel/RequestViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "448">
+               </Location>
+               <Location
+                  uuid = "1CF81EAE-54C8-46EE-AD5D-AB1850AC0BBE - 5dc48a9af6dbb808"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vacaciones.RequestViewModel.postLogin(correo: Swift.String, pass: Swift.String) -&gt; ()"
+                  moduleName = "Vacaciones"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/freddycarias/Documents/VacacionesXcode/Vacaciones/ViewModel/RequestViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "324">
+               </Location>
+               <Location
+                  uuid = "1CF81EAE-54C8-46EE-AD5D-AB1850AC0BBE - 5dc48a9af6dbb808"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Vacaciones.RequestViewModel.postLogin(correo: Swift.String, pass: Swift.String) -&gt; ()"
+                  moduleName = "Vacaciones"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/freddycarias/Documents/VacacionesXcode/Vacaciones/ViewModel/RequestViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "328">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04786F83-07D8-4EE7-960B-7D8C20396C3E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vacaciones/ViewModel/RequestViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "postLogin(correo:pass:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

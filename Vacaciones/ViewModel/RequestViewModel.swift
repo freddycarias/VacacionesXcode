@@ -8,11 +8,17 @@
 import Foundation
 import SwiftUI
 
+public var user = "0"
+
 final class RequestViewModel: ObservableObject {
     @Published var requestModels: [RequestModel] = []
+
+    //MARK: Primer Intento
+    @Published var userInfo: UserInfo?
     
     func postLogin(correo: String, pass: String) {
         let endpoint = "https://servicios.tvguatesa.com/api/api/getInfoUsuario"
+        
 
         guard let url = URL(string: endpoint) else {
             return
@@ -29,13 +35,17 @@ final class RequestViewModel: ObservableObject {
         request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
 
         let task = URLSession.shared.dataTask(with: request) { data, _, error  in
-            guard let data = data , error == nil else{
+            guard let data = data , error == nil else {
                 return
             }
-
+            print(data)
             do {
-                let response = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                print("funciono \(response)")
+                let json = try JSON(data: data)
+//                let response = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                let decoder = JSONDecoder()
+                print("json" + "\(json.arrayValue[0])")
+                self.userInfo = try decoder.decode(UserInfo.self, from: json[0].rawData())
+                user = self.userInfo?.id_usuario ?? ""
             } catch {
                 print(error)
             }
@@ -123,7 +133,6 @@ final class RequestViewModel: ObservableObject {
     }
     
     func getRequestId(idUsuario: String) {
-        
         guard let url = URL(string: "https://servicios.tvguatesa.com/api/api/getSolicitudesByUsuario") else {
             print("Error: URL inválida")
             return
@@ -137,25 +146,25 @@ final class RequestViewModel: ObservableObject {
             "id_usuario": idUsuario
         ]
 
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: requestData)
-            request.httpBody = jsonData
+        request.httpBody = try? JSONSerialization.data(withJSONObject: requestData, options: .fragmentsAllowed)
 
-            URLSession.shared.dataTask(with: request) { data, _, error in
-                if let error = error {
-                    print("Error al realizar la solicitud: \(error.localizedDescription)")
-                } else if let data = data {
-                    // Operaciones que actualizan la interfaz de usuario
-                    DispatchQueue.main.async {
-                        print("Respuesta del servidor: \(String(data: data, encoding: .utf8) ?? "")")
-                    }
-                }
-            }.resume()
-        } catch {
-            print("Error al convertir datos a JSON: \(error.localizedDescription)")
+        let task = URLSession.shared.dataTask(with: request) { data, _, error  in
+            guard let data = data , error == nil else {
+                return
+            }
+            print(data)
+            do {
+                let json = try JSON(data: data)
+                let decoder = JSONDecoder()
+                print("json" + "\(json.arrayValue)")
+                self.requestModels = try decoder.decode([RequestModel].self, from: json.rawData())
+            } catch {
+                print(error)
+            }
         }
+        task.resume()
     }
-
+    
     
     func updateState(idEstado: String, idSolicitud: String) {
         

@@ -9,9 +9,9 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @State private var nombre: String = ""
     @State private var requestViewModel = RequestViewModel()
     @State private var navigateToContacts = false
-
     static let customColor = Color(.orange)
 
     var body: some View {
@@ -29,7 +29,14 @@ struct LoginView: View {
                 }
 
                 loginButton
-
+ 
+                
+//                Button("Obtener Nombre") {
+//                    requestViewModel.postLogin(correo: "tu_correo", pass: "tu_password")
+//                           }
+//                Text(requestViewModel.nombre)
+//                Text(requestViewModel.rol)
+                
                 Spacer()
 
                 //                HStack {
@@ -76,6 +83,13 @@ struct LoginView: View {
     }
 }
 
+struct UserInfo: Codable {
+    let id_usuario: String
+    let nombre: String
+    let departamento: String
+    let rol: String
+}
+
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
@@ -86,3 +100,4 @@ struct LoginView_Previews: PreviewProvider {
 //  "correo":"sbs.jbarrera@gmail.com",
 //  "pass":"jhon123"
 //}
+

@@ -47,7 +47,7 @@ struct NewRequestView: View {
                     }
                     .padding()
                     .border(.gray, width: 2)
-
+                    
                     Section {
                         VStack {
                             DatePicker("Inicio", selection: $startDate, displayedComponents: [.date])

@@ -62,7 +62,7 @@ struct RequestView: View {
                     }
                 }
                 .frame(height: 300)
-                .task {
+                .onAppear {
                     requestViewModel.getRequestId(idUsuario: "1")
                 }
             }

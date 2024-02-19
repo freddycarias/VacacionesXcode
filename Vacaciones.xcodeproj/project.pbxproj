@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F896CDB2B83AB90009FBB13 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F896CDA2B83AB90009FBB13 /* SwiftyJSON.swift */; };
 		A77B55732B7566EA000798D7 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77B55722B7566EA000798D7 /* LoginModel.swift */; };
 		A7FE559D2B67F21E004CAAE9 /* VacacionesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE559C2B67F21E004CAAE9 /* VacacionesApp.swift */; };
 		A7FE559F2B67F21E004CAAE9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE559E2B67F21E004CAAE9 /* LoginView.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F896CDA2B83AB90009FBB13 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../../Downloads/SwiftyJSON.swift; sourceTree = "<group>"; };
 		A77B55722B7566EA000798D7 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		A7FE55992B67F21E004CAAE9 /* Vacaciones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vacaciones.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FE559C2B67F21E004CAAE9 /* VacacionesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacacionesApp.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				A7FE55A22B67F226004CAAE9 /* Preview Content */,
 				A7FE55AF2B68008C004CAAE9 /* TextCustomizer.swift */,
 				A7FE55C62B6BF296004CAAE9 /* Launch Screen.storyboard */,
+				2F896CDA2B83AB90009FBB13 /* SwiftyJSON.swift */,
 			);
 			path = Vacaciones;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				A7FE55AE2B67FBEB004CAAE9 /* HeaderView.swift in Sources */,
 				A7FE55B02B68008C004CAAE9 /* TextCustomizer.swift in Sources */,
 				A7FE55C32B699362004CAAE9 /* RequestModel.swift in Sources */,
+				2F896CDB2B83AB90009FBB13 /* SwiftyJSON.swift in Sources */,
 				A7FE55B62B680D69004CAAE9 /* ConsultView.swift in Sources */,
 				A7FE55BC2B6958A3004CAAE9 /* Card.swift in Sources */,
 			);
