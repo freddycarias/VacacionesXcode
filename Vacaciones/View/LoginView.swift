@@ -5,6 +5,12 @@
 //  Created by Rene Carias on 29/01/24.
 //
 
+//
+//  ContentView.swift
+//  Vacaciones
+//
+//  Created by Rene Carias on 29/01/24.
+//
 import SwiftUI
 struct LoginView: View {
     @State private var email = ""
@@ -13,6 +19,7 @@ struct LoginView: View {
     @State private var requestViewModel = RequestViewModel()
     @State private var navigateToContacts = false
     static let customColor = Color(.orange)
+    @State private var showAlert = false
 
     var body: some View {
         NavigationStack {
@@ -31,14 +38,10 @@ struct LoginView: View {
                 loginButton
                 
                 Spacer()
-                HStack {
-                    Text("You don't have an account")
-                    NavigationLink(destination: VacationView()) {
-                        Text("Register")
-                            .foregroundColor(LoginView.customColor)
-                    }
-                }
             }
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Campos vacíos"), message: Text("Por favor ingresa tu correo y contraseña"), dismissButton: .default(Text("OK")))
         }
     }
 
@@ -54,12 +57,14 @@ struct LoginView: View {
 
     private var loginButton: some View {
         Button(action: {
-            requestViewModel.postLogin(correo: email, pass: password)
-
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                navigateToContacts = true
+            if validateFields() {
+                requestViewModel.postLogin(correo: email, pass: password)
+                Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                    navigateToContacts = true
+                }
+            } else {
+                showAlert = true
             }
-
         }) {
             Text("Ingresar")
                 .padding(.horizontal, 40)
@@ -73,7 +78,32 @@ struct LoginView: View {
                 VacationView().navigationBarBackButtonHidden(true)
         }
     }
+    
+    private func validateFields() -> Bool {
+        return !email.isEmpty && !password.isEmpty
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//{
+//  "correo":"sbs.jbarrera@gmail.com",
+//  "pass":"jhon123"
+//}
+
+
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
