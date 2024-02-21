@@ -29,23 +29,15 @@ struct LoginView: View {
                 }
 
                 loginButton
- 
-                
-//                Button("Obtener Nombre") {
-//                    requestViewModel.postLogin(correo: "tu_correo", pass: "tu_password")
-//                           }
-//                Text(requestViewModel.nombre)
-//                Text(requestViewModel.rol)
                 
                 Spacer()
-
-                //                HStack {
-                //                    Text("You don't have an account")
-                //                    NavigationLink(destination: VacationView()) {
-                //                        Text("Register")
-                //                            .foregroundColor(LoginView.customColor)
-                //                    }
-                //                }
+                HStack {
+                    Text("You don't have an account")
+                    NavigationLink(destination: VacationView()) {
+                        Text("Register")
+                            .foregroundColor(LoginView.customColor)
+                    }
+                }
             }
         }
     }
@@ -83,21 +75,8 @@ struct LoginView: View {
     }
 }
 
-struct UserInfo: Codable {
-    let id_usuario: String
-    let nombre: String
-    let departamento: String
-    let rol: String
-}
-
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
     }
 }
-
-//{
-//  "correo":"sbs.jbarrera@gmail.com",
-//  "pass":"jhon123"
-//}
-

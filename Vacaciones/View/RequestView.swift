@@ -35,10 +35,9 @@ struct RequestView: View {
                 VStack {
                     Text("\(nombre)")
 
-                    Text(" Desarrollo (department) ")
+                    Text(" Desarrollo \(userDepartamento) ")
 
                     Text("Horas Disponibles: \(horasDisponibles)")
-                    Text(idSolicitud)
                 }
             }
 
@@ -57,14 +56,15 @@ struct RequestView: View {
                   
             } else if selectedCategory == .planning {
                 List {
-                    ForEach(requestViewModel.requestModels, id: \.self){rq in
-                        Card(nombre: rq.nombre ?? "", fechaSolicitud: rq.fechaSolicitud ?? "", hora: rq.horas ?? "", estado: rq.estado ?? "")
+                    ForEach(requestViewModel.requestModelsPlaning, id: \.self){rq in
+                        getCard(for: rq)
                     }
                 }
                 .frame(height: 300)
-                .onAppear {
-                    requestViewModel.getRequestId(idUsuario: "1")
+                .task {
+                    requestViewModel.getRequestId(idUsuario: userID, endpoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesByUsuario")
                 }
+                
             }
 
             Text("Fecha: \(fechaSolicitud)")
@@ -73,36 +73,44 @@ struct RequestView: View {
                 .font(.largeTitle)
                 
 
-            if estado != "publicada" {
+            if estado != "publicada" || userRol != "gerente"{
                 Spacer()
             }
             
-
-            //if donde se valide que en el login el usuario sea gerente o colavorador
-            if estado == "publicada" {
+            if userRol == "gerente" {
                 
-                Button(action: {
-                    requestViewModel.updateState(idEstado: "2", idSolicitud: idSolicitud)
-                }) {
-                    Text("Aceptar")
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 85)
+                if estado == "publicada" {
+                    Button(action: {
+                        requestViewModel.updateState(idEstado: "2", idSolicitud: idSolicitud)
+                    }) {
+                        Text("Aceptar")
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 85)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.green)
+                    
+                    Button(action: {
+                        requestViewModel.updateState(idEstado: "3", idSolicitud: idSolicitud)
+                    }) {
+                        Text("Rechazar")
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 80)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.red)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(.green)
-                
-                Button(action: {
-                    requestViewModel.updateState(idEstado: "3", idSolicitud: idSolicitud)
-                }) {
-                    Text("Rechazar")
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 80)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.red)
             }
         }
         .padding(.top, -100)
+    }
+    
+    func getCard(for request: RequestModel2) -> some View {
+        Card(
+            nombre: request.nombre ?? "df",
+            fechaSolicitud: request.fecha_solicitud?.formatDate() ?? "",
+            hora: request.horas ?? "0"
+        )
     }
 }
 

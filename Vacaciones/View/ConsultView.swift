@@ -35,78 +35,147 @@ struct ConsultView: View {
                     .frame(width: 300)
 
                     if selectedCategory == .accepted {
-                        List {
-                            ForEach(requestViewModel.requestModels.filter { shouldShowRequest($0) }, id: \.self) { request in
-
-                                NavigationLink {
-                                    getRequestView(for: request)
-                                } label: {
-                                    getCard(for: request)
+                        if userRol == "gerente" {
+                            List {
+                                ForEach(requestViewModel.requestModels.filter { shouldShowRequest($0) }, id: \.self) { request in
+                                    
+                                    NavigationLink {
+                                        getRequestView(for: request)
+                                    } label: {
+                                        getCard(for: request)
+                                    }
                                 }
                             }
-                        }
-                        .scrollContentBackground(.hidden)
-                        .task {
-                            do {
-                                try await requestViewModel.getRequest(endPoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesAcepted")
-                            } catch RMError.invalidURL {
-                                print("Invalid URL")
-                            } catch RMError.invalidData {
-                                print("Invalid Data")
-                            } catch RMError.invalidResponse {
-                                print("Invalid Response")
-                            } catch {
-                                print("Unexpected Error")
+                            .scrollContentBackground(.hidden)
+                            .task {
+                                    do {
+                                        try await requestViewModel.getRequest(endPoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesAcepted")
+                                    } catch RMError.invalidURL {
+                                        print("Invalid URL")
+                                    } catch RMError.invalidData {
+                                        print("Invalid Data")
+                                    } catch RMError.invalidResponse {
+                                        print("Invalid Response")
+                                    } catch {
+                                        print("Unexpected Error")
+                                    }
+                                
+                            }
+                        } else {
+                            List {
+                                ForEach(requestViewModel.requestModelsPlaning, id: \.self) { request in
+                                    NavigationLink {
+                                        postRequestView(for: request)
+                                    } label: {
+                                        Card(
+                                            nombre: request.nombre ?? "",
+                                            fechaSolicitud: request.fecha_solicitud?.formatDate() ?? "",
+                                            hora: request.horas ?? "0"
+                                        )
+                                    }
+                                }
+                            }
+                            .scrollContentBackground(.hidden)
+                            .task{
+                                requestViewModel.getRequestId(idUsuario: userID, endpoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesByUsuario")
                             }
                         }
                     } else if selectedCategory == .rejected {
-                        List {
-                            ForEach(requestViewModel.requestModels.filter { shouldShowRequest($0) }, id: \.self) { request in
+                        if userRol == "gerente" {
+                            List {
+                                ForEach(requestViewModel.requestModels.filter { shouldShowRequest($0) }, id: \.self) { request in
 
-                                NavigationLink {
-                                    getRequestView(for: request)
-                                } label: {
-                                    getCard(for: request)
+                                    NavigationLink {
+                                        getRequestView(for: request)
+                                    } label: {
+                                        getCard(for: request)
+                                    }
                                 }
                             }
-                        }
-                        .scrollContentBackground(.hidden)
-                        .task {
-                            do {
-                                try await requestViewModel.getRequest(endPoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesDeclined")
-                            } catch RMError.invalidURL {
-                                print("Invalid URL")
-                            } catch RMError.invalidData {
-                                print("Invalid Data")
-                            } catch RMError.invalidResponse {
-                                print("Invalid Response")
-                            } catch {
-                                print("Unexpected Error")
+                            .scrollContentBackground(.hidden)
+                            .task {
+                                if userRol != "gerente" {
+                                    requestViewModel.getRequestId(idUsuario: userID, endpoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesUsuarioDeclined")
+                                } else {
+                                    do {
+                                        try await requestViewModel.getRequest(endPoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesDeclined")
+                                    } catch RMError.invalidURL {
+                                        print("Invalid URL")
+                                    } catch RMError.invalidData {
+                                        print("Invalid Data")
+                                    } catch RMError.invalidResponse {
+                                        print("Invalid Response")
+                                    } catch {
+                                        print("Unexpected Error")
+                                    }
+                                }
+                            }
+                        } else {
+                            List {
+                                ForEach(requestViewModel.requestModelsPlaning, id: \.self) { request in
+                                    NavigationLink {
+                                        postRequestView(for: request)
+                                    } label: {
+                                        Card(
+                                            nombre: request.nombre ?? "",
+                                            fechaSolicitud: request.fecha_solicitud?.formatDate() ?? "",
+                                            hora: request.horas ?? "0"
+                                        )
+                                    }
+                                }
+                            }
+                            .scrollContentBackground(.hidden)
+                            .task{
+                                requestViewModel.getRequestId(idUsuario: userID, endpoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesUsuarioDeclined")
                             }
                         }
                     } else {
-                        List {
-                            ForEach(requestViewModel.requestModels.filter { shouldShowRequest($0) }, id: \.self) { request in
+                        if userRol == "gerente" {
+                            List {
+                                ForEach(requestViewModel.requestModels.filter { shouldShowRequest($0) }, id: \.self) { request in
 
-                                NavigationLink {
-                                    getRequestView(for: request)
-                                } label: {
-                                    getCard(for: request)
+                                    NavigationLink {
+                                        getRequestView(for: request)
+                                    } label: {
+                                        getCard(for: request)
+                                    }
                                 }
                             }
-                        }
-                        .scrollContentBackground(.hidden)
-                        .task {
-                            do {
-                                try await requestViewModel.getRequest(endPoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesPublished")
-                            } catch RMError.invalidURL {
-                                print("Invalid URL")
-                            } catch RMError.invalidData {
-                                print("Invalid Data")
-                            } catch RMError.invalidResponse {
-                                print("Invalid Response")
-                            } catch {
-                                print("Unexpected Error")
+                            .scrollContentBackground(.hidden)
+                            .task {
+                                if userRol != "gerente" {
+                                    requestViewModel.getRequestId(idUsuario: userID, endpoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesUsuarioPublished")
+                                } else {
+                                    do {
+                                        try await requestViewModel.getRequest(endPoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesPublished")
+                                    } catch RMError.invalidURL {
+                                        print("Invalid URL")
+                                    } catch RMError.invalidData {
+                                        print("Invalid Data")
+                                    } catch RMError.invalidResponse {
+                                        print("Invalid Response")
+                                    } catch {
+                                        print("Unexpected Error")
+                                    }
+                                }
+                            }
+                        } else {
+                            List {
+                                ForEach(requestViewModel.requestModelsPlaning, id: \.self) { request in
+                                    NavigationLink {
+                                        postRequestView(for: request)
+                                    } label: {
+                                        Card(
+                                            nombre: request.nombre ?? "",
+                                            fechaSolicitud: request.fecha_solicitud?.formatDate() ?? "",
+                                            hora: request.horas ?? "0"
+                                        )
+                                    }
+                                }
+                            }
+                            .scrollContentBackground(.hidden)
+                            .task{
+                                requestViewModel.getRequestId(idUsuario: userID, endpoint: "https://servicios.tvguatesa.com/api/api/getSolicitudesUsuarioPublished")
                             }
                         }
                     }
@@ -115,6 +184,7 @@ struct ConsultView: View {
         }
     }
 
+    
     func shouldShowRequest(_ request: RequestModel) -> Bool {
         switch selectedCategory {
         case .accepted:
@@ -125,16 +195,24 @@ struct ConsultView: View {
             return request.estado == "publicada"
         }
     }
-
+    
     func getCard(for request: RequestModel) -> some View {
         Card(
             nombre: request.nombre ?? "df",
             fechaSolicitud: request.fechaSolicitud?.formatDate() ?? "df",
-            hora: request.horas ?? "0",
-            estado: request.estado ?? "publicada"
+            hora: request.horas ?? "0"
         )
     }
 
+    func postRequestView(for request: RequestModel2) -> some View {
+        RequestView(
+            estado: request.id_estado ?? "publicada", nombre: request.nombre ?? "df",
+            tipoSolicitud: request.tipo_solicitud ?? "vacaciones",
+            fechaSolicitud: request.fecha_solicitud?.formatDate() ?? "df",
+            hora: request.horas ?? "0", idSolicitud: request.id_solicitud ?? "1", horasDisponibles: request.horas_disponibles ?? "120"
+        )
+    }
+    
     func getRequestView(for request: RequestModel) -> some View {
         RequestView(
             estado: request.estado ?? "publicada", nombre: request.nombre ?? "df",

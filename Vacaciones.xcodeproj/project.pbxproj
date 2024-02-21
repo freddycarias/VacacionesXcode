@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2F896CDB2B83AB90009FBB13 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F896CDA2B83AB90009FBB13 /* SwiftyJSON.swift */; };
+		2F896CDD2B83F2F3009FBB13 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F896CDC2B83F2F3009FBB13 /* UserInfo.swift */; };
+		2F896CDF2B83FBA3009FBB13 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F896CDE2B83FBA3009FBB13 /* PostViewModel.swift */; };
 		A77B55732B7566EA000798D7 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77B55722B7566EA000798D7 /* LoginModel.swift */; };
 		A7FE559D2B67F21E004CAAE9 /* VacacionesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE559C2B67F21E004CAAE9 /* VacacionesApp.swift */; };
 		A7FE559F2B67F21E004CAAE9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE559E2B67F21E004CAAE9 /* LoginView.swift */; };
@@ -31,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		2F896CDA2B83AB90009FBB13 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../../../Downloads/SwiftyJSON.swift; sourceTree = "<group>"; };
+		2F896CDC2B83F2F3009FBB13 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		2F896CDE2B83FBA3009FBB13 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		A77B55722B7566EA000798D7 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		A7FE55992B67F21E004CAAE9 /* Vacaciones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vacaciones.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FE559C2B67F21E004CAAE9 /* VacacionesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacacionesApp.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				A7FE55C22B699362004CAAE9 /* RequestModel.swift */,
 				A7FE55C42B6BF1CD004CAAE9 /* UserModel.swift */,
 				A77B55722B7566EA000798D7 /* LoginModel.swift */,
+				2F896CDC2B83F2F3009FBB13 /* UserInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -135,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				A7FE55C92B6BFDAA004CAAE9 /* RequestViewModel.swift */,
+				2F896CDE2B83FBA3009FBB13 /* PostViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -226,7 +232,9 @@
 				A7FE55C32B699362004CAAE9 /* RequestModel.swift in Sources */,
 				2F896CDB2B83AB90009FBB13 /* SwiftyJSON.swift in Sources */,
 				A7FE55B62B680D69004CAAE9 /* ConsultView.swift in Sources */,
+				2F896CDD2B83F2F3009FBB13 /* UserInfo.swift in Sources */,
 				A7FE55BC2B6958A3004CAAE9 /* Card.swift in Sources */,
+				2F896CDF2B83FBA3009FBB13 /* PostViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

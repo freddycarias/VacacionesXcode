@@ -141,17 +141,16 @@ struct NewRequestView: View {
     
     private func sendRequest() {
         let idTipoValue: Int = selectedCategory.rawValue == "Vacaciones" ? 1 : 2
-        requestViewModel.sendRequest(idTipoValue: idTipoValue,
+        requestViewModel.sendRequest(idUsuario: userID, idTipoValue: idTipoValue,
                                      dateNow: dateNow,
                                      startDate: startDate,
                                      endDate: endDate,
                                      hours: hours) { success in
             if success {
-                requestViewModel.updateAvailableHours(idUsuario: "1", horasDisponibles: "100")
-                // El envío de datos fue exitoso, ahora puedes navegar a otra vista
+                let resultado = (Int(userHorasDisponibles) ?? 0) - hours
+                requestViewModel.updateAvailableHours(idUsuario: userID, horasDisponibles: "\(resultado)")
                 navigateToHome = true
             } else {
-                // El envío de datos falló, puedes manejarlo según sea necesario
                 print("Error en el envío de datos.")
             }
         }

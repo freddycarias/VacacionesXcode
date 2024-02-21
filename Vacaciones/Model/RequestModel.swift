@@ -27,6 +27,20 @@ struct RequestModel: Codable, Hashable {
 }
 
 
+struct RequestModel2: Codable, Hashable {
+    let id_solicitud: String?
+    let nombre: String?
+    let horas_disponibles: String?
+    let tipo_solicitud: String?
+    var id_estado: String?
+    let fecha_solicitud: String?
+    let fecha_inicio: String?
+    let fecha_fin: String?
+    let horas: String?
+    
+    static let empty: RequestModel2 = .init(id_solicitud: "", nombre: "", horas_disponibles: "", tipo_solicitud: "", fecha_solicitud: "", fecha_inicio: "", fecha_fin: "", horas: "")
+}
+
 enum RMError: Error {
     case invalidURL
     case invalidResponse

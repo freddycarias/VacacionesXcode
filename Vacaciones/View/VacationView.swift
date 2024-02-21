@@ -17,12 +17,14 @@ struct VacationView: View {
                         Text("Inicio")
                     }
                 
-                // hacer un if si el usuario es diferente a Gerente
-                NewRequestView()
-                    .tabItem {
-                        Image(systemName: "note.text.badge.plus")
-                        Text("Solicitar")
-                    }
+                if userRol != "gerente" {
+                    NewRequestView()
+                        .tabItem {
+                            Image(systemName: "note.text.badge.plus")
+                            Text("Solicitar")
+                        }
+                }
+                
                 ConsultView()
                     .tabItem {
                         Image(systemName: "rectangle.and.text.magnifyingglass")

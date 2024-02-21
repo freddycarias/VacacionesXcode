@@ -8,18 +8,21 @@
 import Foundation
 import SwiftUI
 
-public var user = "0"
+public var userID = ""
+public var userNombre = ""
+public var userDepartamento = ""
+public var userRol = ""
+public var userHorasDisponibles = ""
 
 final class RequestViewModel: ObservableObject {
     @Published var requestModels: [RequestModel] = []
-
-    //MARK: Primer Intento
+    @Published var requestModelsPlaning: [RequestModel2] = []
     @Published var userInfo: UserInfo?
+    
     
     func postLogin(correo: String, pass: String) {
         let endpoint = "https://servicios.tvguatesa.com/api/api/getInfoUsuario"
         
-
         guard let url = URL(string: endpoint) else {
             return
         }
@@ -45,7 +48,11 @@ final class RequestViewModel: ObservableObject {
                 let decoder = JSONDecoder()
                 print("json" + "\(json.arrayValue[0])")
                 self.userInfo = try decoder.decode(UserInfo.self, from: json[0].rawData())
-                user = self.userInfo?.id_usuario ?? ""
+                userID = self.userInfo?.id_usuario ?? "0"
+                userNombre = self.userInfo?.nombre ?? "sin nombre"
+                userDepartamento = self.userInfo?.departamento ?? "sin departamento"
+                userRol = self.userInfo?.rol ?? "sin rol"
+                userHorasDisponibles = self.userInfo?.horas_disponibles ?? "sin horas"
             } catch {
                 print(error)
             }
@@ -91,7 +98,7 @@ final class RequestViewModel: ObservableObject {
         return formatter
     }
 
-    func sendRequest(idTipoValue: Int, dateNow: Date, startDate: Date, endDate: Date, hours: Int, completion: @escaping (Bool) -> Void) {
+    func sendRequest(idUsuario: String,idTipoValue: Int, dateNow: Date, startDate: Date, endDate: Date, hours: Int, completion: @escaping (Bool) -> Void) {
         guard let url = URL(string: "https://servicios.tvguatesa.com/api/api/postSolicitud") else {
             print("Error: URL inválida")
             return
@@ -108,7 +115,7 @@ final class RequestViewModel: ObservableObject {
             "fecha_inicio": dateFormatter.string(from: startDate),
             "fecha_fin": dateFormatter.string(from: endDate),
             "horas": hours,
-            "id_usuario": 1,
+            "id_usuario": idUsuario,
         ]
 
         do {
@@ -132,8 +139,8 @@ final class RequestViewModel: ObservableObject {
         }
     }
     
-    func getRequestId(idUsuario: String) {
-        guard let url = URL(string: "https://servicios.tvguatesa.com/api/api/getSolicitudesByUsuario") else {
+    func getRequestId(idUsuario: String, endpoint: String) {
+        guard let url = URL(string: endpoint) else {
             print("Error: URL inválida")
             return
         }
@@ -157,7 +164,7 @@ final class RequestViewModel: ObservableObject {
                 let json = try JSON(data: data)
                 let decoder = JSONDecoder()
                 print("json" + "\(json.arrayValue)")
-                self.requestModels = try decoder.decode([RequestModel].self, from: json.rawData())
+                self.requestModelsPlaning = try decoder.decode([RequestModel2].self, from: json.rawData())
             } catch {
                 print(error)
             }

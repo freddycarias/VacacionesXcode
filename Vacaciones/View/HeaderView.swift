@@ -33,7 +33,10 @@ struct HeaderView: View {
             Spacer()
 
             Button(action: {
-                print("Cerro Sesión")
+                userID = ""
+                userNombre = ""
+                userDepartamento = ""
+                userRol = ""
             }) {
                 NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true)) {
                     Image(systemName: "power")
